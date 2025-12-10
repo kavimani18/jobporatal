@@ -1,0 +1,19 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/joblist.css' %}">
+
+<h2>Edit Job Post</h2>
+
+<div class="ad-form">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+     <div class="form-actions">
+            <button type="submit" class="update-btn">Update Job</button>
+            <a href="{% url 'employer_dashboard' %}" class="back-btn">Back</a>
+        </div>
+</form>
+</div>
+
+

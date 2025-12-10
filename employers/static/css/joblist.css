@@ -1,0 +1,112 @@
+
+/* login */
+.login-form, .register-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.login-form input[type="text"], 
+.login-form input[type="password"], .register-form input[type="text"], 
+.register-form input[type="password"], .register-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*joblist*/
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.btn-logout {
+    background-color: #dc3545;
+    
+    margin-left: 1000px;
+   
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px 15px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* End of joblist */
+
+/*addjob*/
+.ad-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.ad-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.ad-form input[type="text"],
+.ad-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.ad-form textarea {
+    padding: 10px !important;
+    height: 70px !important;      /* adjust height */
+    resize: vertical;              /* user can resize if needed */
+}

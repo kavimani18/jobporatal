@@ -1,0 +1,19 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/joblist.css' %}">
+
+<h2>Create an account</h2>
+<div class="register-form">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</form>
+</div>
+
+{% for message in messages %}
+    <p style="color:red;">{{ message }}</p>
+{% endfor %}
+
+

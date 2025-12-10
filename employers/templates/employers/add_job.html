@@ -1,0 +1,48 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/joblist.css' %}">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Job</title>
+</head>
+<body>
+    <h2>Add Job Post</h2>
+
+    <div class="ad-form">
+    <form method="POST">
+    {% csrf_token %}
+
+    <div>
+        <label>Title:</label>
+        <input type="text" name="title" required>
+    </div>
+
+    <div>
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+    </div>
+
+    <div>
+        <label>Salary:</label>
+        <input type="text" name="salary" required>
+    </div>
+
+    <div>
+        <label>Location:</label>
+        <input type="text" name="location" required>
+    </div>
+
+    
+    <div class="form-actions">
+      <button type="submit">Create Job</button>
+      <a href="{% url 'employer_dashboard' %}">Back to Dashboard</a>
+    </div>
+
+</form>
+    
+</div>
+
+
+</body>
+</html>

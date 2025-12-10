@@ -1,0 +1,11 @@
+<h2>Applications for: {{ job.title }}</h2>
+
+{% if applications %}
+    {% for app in applications %}
+        <p>{{ app.candidate_name }} - {{ app.resume }}</p>
+    {% endfor %}
+{% else %}
+    <p>No applications yet.</p>
+{% endif %}
+
+<a href="{% url 'employer_dashboard' %}">Back</a>
