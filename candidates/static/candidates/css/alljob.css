@@ -1,3 +1,36 @@
+/* Auth buttons */
+.auth-container {
+    display: flex;
+    align-items: center;
+}
+
+.auth-container span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.btn-login {
+    background-color: #007bff;
+}
+
+.btn-register {
+    background-color: #28a745;
+}
+
+.btn-logout {
+    background-color: #dc3545;
+}
+
+
+
 .page-title {
     text-align: center;
     margin: 20px 0;

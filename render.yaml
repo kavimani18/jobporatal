@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn jobportal.wsgi:application"
