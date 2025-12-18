@@ -1,0 +1,92 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ghAlIPSe3qXuN80tCtHfcJ$Cfvl5VV84/tvob/0JyltFbcAUplE8axRaQNLr3Qb5/w=",
+    "last_login": "2025-12-18T09:42:34.413Z",
+    "is_superuser": true,
+    "username": "kavi",
+    "first_name": "",
+    "last_name": "",
+    "email": "kavi18@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-09T14:06:36.124Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$sNvMLzeOtRdb1Ykeq89nhC$gWj3Zlh16h6NceJLwQ2WUG8nO3akzNBSlx9D3U2U6OM=",
+    "last_login": "2025-12-13T10:32:08.601Z",
+    "is_superuser": false,
+    "username": "sam",
+    "first_name": "",
+    "last_name": "",
+    "email": "sam22@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-10T12:30:43.929Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$QZHmMOJx66Pqwz6ulKqHBH$0/SQL8QuM03th61/5nm5v2KwKGxO3yZjHOLQU7KvI5g=",
+    "last_login": "2025-12-18T03:58:37.113Z",
+    "is_superuser": false,
+    "username": "jack",
+    "first_name": "",
+    "last_name": "",
+    "email": "jack18@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-13T12:11:38.930Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$87BvB4k0S5bWiF08mzprjP$BqB8pZSOav9xmXyCbnGCLM/38wCwAol6J/So5EYbqeY=",
+    "last_login": "2025-12-17T07:36:37.046Z",
+    "is_superuser": false,
+    "username": "Arya",
+    "first_name": "",
+    "last_name": "",
+    "email": "arya18@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-17T07:16:47.796Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$dLhLpCsd9y5DvRVQdM900K$IhGqAPYj7zHpVUrR0xhCAyBgH9eb8300n5T1nxNLQqQ=",
+    "last_login": "2025-12-17T07:54:56.707Z",
+    "is_superuser": false,
+    "username": "stark",
+    "first_name": "",
+    "last_name": "",
+    "email": "stark18@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-17T07:54:31.889Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
