@@ -20,6 +20,7 @@ class CustomLoginView(auth_views.LoginView):
         return form
 
 urlpatterns = [
+    path('', views.homepage, name='homepage'),
     path('register/', views.register, name='register'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', views.user_logout, name='logout'),

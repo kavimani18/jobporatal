@@ -1,13 +1,38 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import login, logout
-from employers.models import JobPost
+from django.contrib.auth.models import Group
 
+from employers.models import JobPost
 from .forms import CandidateRegisterForm, ApplicationForm
 from .models import JobApplication
 
 
-# ⭐ Candidate Register
+def _is_candidate(user):
+    """
+    Helper to check if the logged-in user is a candidate.
+    """
+    return user.is_authenticated and user.groups.filter(name="candidate").exists()
+
+
+def candidate_required(view_func):
+    """
+    Decorator to ensure that only candidate users can access a view.
+    - Redirects unauthenticated users to the candidate login page.
+    - Blocks authenticated non-candidate users.
+    """
+    return user_passes_test(
+        _is_candidate,
+        login_url="candidates:login",
+    )(view_func)
+
+
+# ⭐ Homepage
+def homepage(request):
+    return render(request, 'candidates/homepage.html')
+
+
+#  Candidate Register
 def register(request):
     if request.method == "POST":
         form = CandidateRegisterForm(request.POST)
@@ -15,6 +40,11 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+
+            # Mark this account as a candidate via Django Group
+            candidate_group, _ = Group.objects.get_or_create(name="candidate")
+            user.groups.add(candidate_group)
+
             login(request, user)
             return redirect('candidates:login')  # Redirect to login page after successful registration
     else:
@@ -23,14 +53,16 @@ def register(request):
     return render(request, 'candidates/register.html', {'form': form})
 
 
-# ⭐ PUBLIC — Show all jobs (no login required)
+
+
+#  PUBLIC — Show all jobs (no login required)
 def all_jobs(request):
     jobs = JobPost.objects.all().order_by('-created_at')
     return render(request, 'candidates/all_jobs.html', {'jobs': jobs})
 
 
-# ⭐ APPLY — Login Required
-@login_required(login_url='candidates:login')
+#  APPLY — Candidate Login Required
+@candidate_required
 def apply_job(request, job_id):
     job = get_object_or_404(JobPost, id=job_id)
 
@@ -52,13 +84,13 @@ def apply_job(request, job_id):
 
 
 
-# ⭐ Application Success Page
-@login_required(login_url='candidates:login')
+#  Application Success Page
+@candidate_required
 def application_success(request):
     return render(request, 'candidates/app_success.html')
 
 
-# ⭐ Logout View
+#  Logout View
 def user_logout(request):
     logout(request)
     return redirect('candidates:all_jobs')

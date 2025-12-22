@@ -1,18 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User, Group
 
 from .models import JobPost
 from .forms import JobPostForm, RegisterForm
-
-from django.shortcuts import render
 from candidates.models import JobApplication
 
 
+def _is_employer(user):
+    """
+    Helper to check if the logged-in user is an employer.
+    """
+    return user.is_authenticated and user.groups.filter(name="employer").exists()
 
+
+def employer_required(view_func):
+    """
+    Decorator to ensure that only employer users can access a view.
+    - Redirects unauthenticated users to the employer login page.
+    - Blocks authenticated non-employer users.
+    """
+    return user_passes_test(
+        _is_employer,
+        login_url="login",  # employers login view name
+    )(view_func)
 
 
 # Employer Registration View
@@ -23,6 +36,11 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+
+            # Mark this account as an employer via Django Group
+            employer_group, _ = Group.objects.get_or_create(name="employer")
+            user.groups.add(employer_group)
+
             messages.success(request, "Registration successful. Please log in.")
             return redirect('login')
     else:
@@ -55,14 +73,14 @@ def user_logout(request):
 
 
 # Employer Dashboard → List all job posts
-@login_required
+@employer_required
 def employer_dashboard(request):
     jobs = JobPost.objects.filter(employer=request.user)
     return render(request, 'employers/job_list.html', {'jobs': jobs})
 
 
 # Add Job Post
-@login_required
+@employer_required
 def add_job(request):
     if request.method == "POST":
         title = request.POST.get("title")
@@ -84,7 +102,7 @@ def add_job(request):
 
 
 # Edit Job Post
-@login_required
+@employer_required
 def edit_job(request, job_id):
     job = get_object_or_404(JobPost, id=job_id, employer=request.user)
 
@@ -100,7 +118,7 @@ def edit_job(request, job_id):
 
 
 # Delete Job Post
-@login_required
+@employer_required
 def delete_job(request, job_id):
     job = get_object_or_404(JobPost, id=job_id, employer=request.user)
     job.delete()
@@ -110,7 +128,7 @@ def delete_job(request, job_id):
 # View applications (placeholder)
 
 
-@login_required(login_url='employers:login')
+@employer_required
 def view_applications(request, job_id):
     """
     Employer can view applications ONLY for a specific job they own

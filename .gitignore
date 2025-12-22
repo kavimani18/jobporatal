@@ -6,6 +6,7 @@ __pycache__/
 *.pyd
 
 # SQLite database
+db.sqlite3
 
 
 # Environment variables

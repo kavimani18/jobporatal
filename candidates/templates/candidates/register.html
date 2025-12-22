@@ -1,19 +1,18 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/joblist.css' %}">
 
-<h2>Create an account</h2>
+<h2>Create Your Account</h2>
+
 <div class="register-form">
-<form method="POST" autocomplete="off">
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
-    <p>Already have an account? 
-    <a href="{% url 'candidates:login' %}">Login</a>
 </form>
 </div>
-
-{% for message in messages %}
-    <p style="color:red;">{{ message }}</p>
-{% endfor %}
-
-
+<p>Already have an account? 
+    <a href="{% url 'candidates:login' %}">Login</a>
+</p>
+{% if error_message %}
+    <p class="error-message">{{ error_message }}</p>
+{% endif %}

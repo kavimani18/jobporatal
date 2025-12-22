@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Portal</title>
+
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="{% static 'candidates/css/alljob.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Job Portal</h1>
+        <p>
+            <a href="{% url 'candidates:all_jobs' %}">View Jobs</a>
+        </p>
+    </header>
+</body>
+</html>
+
